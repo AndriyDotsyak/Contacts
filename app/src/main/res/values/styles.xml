@@ -7,9 +7,19 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Theme.Contacts.Text.Roboto.Medium" parent="Theme.Contacts.Text">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
     <style name="Theme.Contacts.Text.SfProText.Semibold" parent="Theme.Contacts.Text">
         <item name="android:fontFamily">@font/sf_pro_text_semibold</item>
     </style>
     <!-- Text styles end -->
+
+    <!-- Image styles start -->
+    <style name="Theme.Contacts.ShapeableImage.Ring" parent="Theme.Contacts">
+        <item name="cornerSize">50%</item>
+    </style>
+    <!-- Image styles end -->
 
 </resources>

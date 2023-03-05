@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.contacts.data.model.contacts.Contact" />
+        <variable name="contact" type="Contact" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_70">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="@dimen/size_42"
+            android:layout_height="@dimen/size_42"
+            android:layout_marginStart="@dimen/size_20"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            app:shapeAppearanceOverlay="@style/Theme.Contacts.ShapeableImage.Ring"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/tvFullName"
+            style="@style/Theme.Contacts.Text.Roboto.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_8"
+            android:text="@{contact.fullName}"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvNumberPhone"
+            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/tvNumberPhone"
+            style="@style/Theme.Contacts.Text.Roboto.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:text="@{contact.phoneNumber}"
+            android:textColor="@color/philippine_gray"
+            app:layout_constraintTop_toBottomOf="@+id/tvFullName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvFullName"
+            tools:text="+390662079188" />
+
+        <CheckBox
+            android:id="@+id/cbFavorite"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
+            android:layout_marginEnd="@dimen/size_20"
+            android:button="@drawable/sl_favorite"
+            android:buttonTint="@drawable/sl_favorite"
+            android:checked="@{contact.isFavorite}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_1"
+            android:background="@color/philippine_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvFullName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
