@@ -23,12 +23,11 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, P extends BaseCo
     @Inject
     protected P presenter;
     protected VDB binding = null;
-
-    protected NavController navController = findNavController(getFragmentContainerId());
+    protected NavController navController = null;
 
     protected abstract int getLayoutId();
 
-    private int getFragmentContainerId() {
+    protected int getFragmentContainerId() {
         return -1;
     }
 
@@ -36,6 +35,7 @@ public abstract class BaseActivity<VDB extends ViewDataBinding, P extends BaseCo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = getDtaBinding();
+        navController = findNavController(getFragmentContainerId());
         presenter.onCreate();
     }
 

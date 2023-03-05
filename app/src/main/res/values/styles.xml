@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text styles start -->
+    <style name="Theme.Contacts.Text">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.Contacts.Text.SfProText.Semibold" parent="Theme.Contacts.Text">
+        <item name="android:fontFamily">@font/sf_pro_text_semibold</item>
+    </style>
+    <!-- Text styles end -->
+
+</resources>

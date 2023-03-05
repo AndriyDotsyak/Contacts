@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Contacts</string>
+
+    <!-- Home Activity -->
+    <string name="favorites">Favorites</string>
+    <string name="contacts">Contacts</string>
+
+    <!-- Contacts Fragmen -->
+    <string name="my_contacts">My Contacts</string>
+
+    <!-- Favorites Fragmen -->
+    <string name="my_favorites">My Favorites</string>
+
 </resources>

@@ -35,6 +35,18 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, P extends BaseCo
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.onCreate();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.onStart();
+    }
+
+    @Override
     public void onProgress(boolean isProgress) {
         // TODO Progress
     }
@@ -52,4 +64,15 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, P extends BaseCo
         Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroy();
+    }
 }
