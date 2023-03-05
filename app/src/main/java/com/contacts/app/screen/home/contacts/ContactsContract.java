@@ -13,6 +13,8 @@ public interface ContactsContract {
 
     interface Presenter extends BaseContract.Presenter {
         void fetchContacts();
+        void addFavorite(Contact contact);
+        void removeFavorite(Contact contact);
     }
 
 }

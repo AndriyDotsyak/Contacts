@@ -2,7 +2,9 @@ package com.contacts.data.model.contacts;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Address {
+import io.realm.RealmObject;
+
+public class Address extends RealmObject {
 
     @SerializedName("city")
     public String city;

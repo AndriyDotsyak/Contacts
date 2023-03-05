@@ -63,6 +63,7 @@ public class ContactsAdapter extends BaseRecyclerAdapter<Contact, ContactsViewHo
                 onClickListener.onClickItem(item);
             });
             binding.cbFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                item.isFavorite = isChecked;
                 onClickListener.onClickFavorite(item, isChecked);
             });
         }

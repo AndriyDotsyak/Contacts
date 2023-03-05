@@ -2,11 +2,15 @@ package com.contacts.data.model.contacts;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Contact {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Contact extends RealmObject {
 
     @SerializedName("id")
     public Long id;
 
+    @PrimaryKey
     @SerializedName("uid")
     public String uid;
 

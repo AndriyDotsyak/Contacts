@@ -2,6 +2,8 @@ package com.contacts.app.screen.home.contacts;
 
 import com.contacts.base.BasePresenter;
 import com.contacts.app.screen.home.contacts.ContactsContract.*;
+import com.contacts.data.database.ContactsDatabase;
+import com.contacts.data.model.contacts.Contact;
 import com.contacts.data.repository.ContactsRepository;
 
 import javax.inject.Inject;
@@ -13,11 +15,17 @@ import io.reactivex.schedulers.Schedulers;
 public class ContactsPresenter extends BasePresenter<View> implements Presenter {
 
     private final ContactsRepository contactsRepository;
+    private final ContactsDatabase contactsDatabase;
 
     @Inject
-    public ContactsPresenter(View view, ContactsRepository contactsRepository) {
+    public ContactsPresenter(
+            View view,
+            ContactsRepository contactsRepository,
+            ContactsDatabase contactsDatabase
+    ) {
         super(view);
         this.contactsRepository = contactsRepository;
+        this.contactsDatabase = contactsDatabase;
     }
 
     @Override
@@ -29,6 +37,18 @@ public class ContactsPresenter extends BasePresenter<View> implements Presenter 
                         contacts -> view.handleContacts(contacts),
                         throwable -> view.showToast(throwable.getMessage())
                 );
+        compositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void addFavorite(Contact contact) {
+        Disposable disposable = contactsDatabase.insertOrUpdate(contact).subscribe();
+        compositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void removeFavorite(Contact contact) {
+        Disposable disposable = contactsDatabase.remove(contact.uid).subscribe();
         compositeDisposable.add(disposable);
     }
 }

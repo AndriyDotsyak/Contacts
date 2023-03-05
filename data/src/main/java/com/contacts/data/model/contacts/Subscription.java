@@ -2,7 +2,9 @@ package com.contacts.data.model.contacts;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Subscription {
+import io.realm.RealmObject;
+
+public class Subscription extends RealmObject {
 
     @SerializedName("plan")
     public String plan;

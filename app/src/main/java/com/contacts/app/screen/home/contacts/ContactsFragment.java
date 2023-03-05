@@ -52,7 +52,11 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Pres
 
             @Override
             public void onClickFavorite(Contact item, boolean isFavorite) {
-                // TODO Update item and save in database
+                if (isFavorite) {
+                    presenter.addFavorite(item);
+                } else {
+                    presenter.removeFavorite(item);
+                }
             }
         });
     }
