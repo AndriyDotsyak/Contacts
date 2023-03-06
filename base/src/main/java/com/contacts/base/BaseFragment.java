@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -53,10 +54,14 @@ public abstract class BaseFragment<VDB extends ViewDataBinding, P extends BaseCo
 
     public void navigate(NavDirections navDirections) {
         try {
-            NavHostFragment.findNavController(this).navigate(navDirections);
+            getNavController().navigate(navDirections);
         } catch (Exception error) {
             Timber.e(error);
         }
+    }
+
+    public NavController getNavController() {
+        return NavHostFragment.findNavController(this);
     }
 
     @Override

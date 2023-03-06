@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import com.contacts.app.R;
 import com.contacts.app.databinding.FragmentContactsBinding;
 import com.contacts.app.screen.home.adapter.ContactsAdapter;
+import com.contacts.app.screen.home.contact_detail.ContactDetailFragmentDirections;
 import com.contacts.app.screen.home.contacts.ContactsContract.*;
 import com.contacts.base.BaseFragment;
 import com.contacts.data.model.contacts.Contact;
@@ -47,15 +48,15 @@ public class ContactsFragment extends BaseFragment<FragmentContactsBinding, Pres
         contactsAdapter.setOnClickListeners(new ContactsAdapter.OnClickListener() {
             @Override
             public void onClickItem(Contact item) {
-                // TODO Show detail contact
+                navigate(ContactDetailFragmentDirections.actionContactDetail(item.uid));
             }
 
             @Override
             public void onClickFavorite(Contact item, boolean isFavorite) {
                 if (isFavorite) {
-                    presenter.addFavorite(item);
+                    presenter.saveContact(item);
                 } else {
-                    presenter.removeFavorite(item);
+                    presenter.removeContact(item);
                 }
             }
         });

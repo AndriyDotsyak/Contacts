@@ -26,7 +26,7 @@ public class FavoritesPresenter extends BasePresenter<View> implements Presenter
 
     @Override
     public void fetchContacts() {
-        Disposable disposable = contactsDatabase.getAll()
+        Disposable disposable = contactsDatabase.getFavoritesContacts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -37,14 +37,14 @@ public class FavoritesPresenter extends BasePresenter<View> implements Presenter
     }
 
     @Override
-    public void addFavorite(Contact contact) {
+    public void saveContact(Contact contact) {
         Disposable disposable = contactsDatabase.insertOrUpdate(contact)
                 .subscribe(item -> fetchContacts());
         compositeDisposable.add(disposable);
     }
 
     @Override
-    public void removeFavorite(Contact contact) {
+    public void removeContact(Contact contact) {
         Disposable disposable = contactsDatabase.remove(contact.uid)
                 .subscribe(item -> fetchContacts());
         compositeDisposable.add(disposable);

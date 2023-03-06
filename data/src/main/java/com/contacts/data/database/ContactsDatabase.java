@@ -13,6 +13,7 @@ import io.realm.RealmResults;
 public class ContactsDatabase extends Database<Contact> {
 
     private final String FIELD_UID = "uid";
+    private final String FIELD_FAVORITE = "isFavorite";
 
     @Inject
     public ContactsDatabase() { }
@@ -37,6 +38,13 @@ public class ContactsDatabase extends Database<Contact> {
     protected void removeItemById(String id) {
         RealmResults<Contact> items = realm.where(Contact.class).equalTo(FIELD_UID, id).findAll();
         items.deleteAllFromRealm();
+    }
+
+    public Single<List<Contact>> getFavoritesContacts() {
+        return singleExecuteTransaction(() -> {
+            RealmResults<Contact> items = realm.where(Contact.class).equalTo(FIELD_FAVORITE, true).findAll();
+            return realm.copyFromRealm(items);
+        });
     }
 
     @Override

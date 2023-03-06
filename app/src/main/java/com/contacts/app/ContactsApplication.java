@@ -5,8 +5,10 @@ import android.app.Application;
 import com.contacts.app.util.Constants;
 
 import dagger.hilt.android.HiltAndroidApp;
+import io.reactivex.plugins.RxJavaPlugins;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import timber.log.Timber;
 
 @HiltAndroidApp
 public class ContactsApplication extends Application {
@@ -16,6 +18,12 @@ public class ContactsApplication extends Application {
         super.onCreate();
 
         initRealm();
+        initTimber();
+        initRx();
+    }
+
+    private void initTimber() {
+        // TODO Init timber
     }
 
     private void initRealm() {
@@ -28,6 +36,10 @@ public class ContactsApplication extends Application {
                 .build();
 
         Realm.setDefaultConfiguration(configuration);
+    }
+
+    private void initRx() {
+        RxJavaPlugins.setErrorHandler(Timber::e);
     }
 
 }

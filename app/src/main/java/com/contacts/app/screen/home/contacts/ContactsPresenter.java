@@ -6,6 +6,8 @@ import com.contacts.data.database.ContactsDatabase;
 import com.contacts.data.model.contacts.Contact;
 import com.contacts.data.repository.ContactsRepository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -34,21 +36,30 @@ public class ContactsPresenter extends BasePresenter<View> implements Presenter 
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        contacts -> view.handleContacts(contacts),
+                        contacts -> {
+                            saveContacts(contacts);
+                            view.handleContacts(contacts);
+                        },
                         throwable -> view.showToast(throwable.getMessage())
                 );
         compositeDisposable.add(disposable);
     }
 
     @Override
-    public void addFavorite(Contact contact) {
+    public void saveContact(Contact contact) {
         Disposable disposable = contactsDatabase.insertOrUpdate(contact).subscribe();
         compositeDisposable.add(disposable);
     }
 
     @Override
-    public void removeFavorite(Contact contact) {
+    public void removeContact(Contact contact) {
         Disposable disposable = contactsDatabase.remove(contact.uid).subscribe();
         compositeDisposable.add(disposable);
+    }
+
+    private void saveContacts(List<Contact> contacts) {
+        for (Contact contact : contacts) {
+            saveContact(contact);
+        }
     }
 }

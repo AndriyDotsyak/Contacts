@@ -35,7 +35,7 @@ public class ContactsAdapter extends BaseRecyclerAdapter<Contact, ContactsViewHo
     public class ContactsViewHolder extends BaseViewHolder<Contact> {
 
         private Contact item = null;
-        private ItemContactBinding binding = ItemContactBinding.bind(itemView);
+        private final ItemContactBinding binding = ItemContactBinding.bind(itemView);
 
         public ContactsViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -11,4 +11,7 @@
     <!-- Favorites Fragmen -->
     <string name="my_favorites">My Favorites</string>
 
+    <!-- ContactDetail Fragmen -->
+    <string name="detail">Detail</string>
+
 </resources>

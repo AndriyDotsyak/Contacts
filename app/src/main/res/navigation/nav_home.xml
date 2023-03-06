@@ -17,4 +17,19 @@
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
 
+    <fragment
+        android:id="@+id/fragContactDetail"
+        android:name="com.contacts.app.screen.home.contact_detail.ContactDetailFragment"
+        android:label="Contact Detail"
+        tools:layout="@layout/fragment_contact_detail">
+
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/actionContactDetail"
+        app:destination="@id/fragContactDetail" />
+
 </navigation>
